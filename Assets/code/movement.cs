@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
+    public Rigidbody2D rb;
     public float moveSpeed;
     public bool isPlayer;
+    
     // Start is called before the first frame update
     void Start()
     {
         //isPlayer = true;
         moveSpeed = 5f;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
-        Vector2 movement = new Vector2(horizontalInput, verticalInput);
-        movement.Normalize();
+        rb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;
 
-        transform.Translate(movement * moveSpeed * Time.deltaTime);
+        
+
+       
     }
 }
