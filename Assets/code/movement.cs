@@ -5,10 +5,11 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     public float moveSpeed;
-    
+    public bool isPlayer;
     // Start is called before the first frame update
     void Start()
     {
+        //isPlayer = true;
         moveSpeed = 5f;
     }
 
