@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 5080318617522668143}
   - component: {fileID: 4054728829310118210}
   - component: {fileID: 4829773752288317194}
+  - component: {fileID: 2167992644476644889}
   - component: {fileID: 3884404131658694634}
   - component: {fileID: 3298319798147304013}
   m_Layer: 0
@@ -226,7 +227,7 @@ Transform:
   - {fileID: 3092811645804567810}
   - {fileID: 2696090742971864253}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5080318617522668143
 BoxCollider2D:
@@ -315,9 +316,22 @@ MonoBehaviour:
   minPauseDuration: 1
   maxPauseDuration: 3
   isPlayer: 0
-  zrb: {fileID: 0}
+  zrb: {fileID: 4054728829310118210}
   target: {fileID: 0}
   moveSpeed: 3.5
+--- !u!114 &2167992644476644889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9080329123100523254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 613728195a1605b4289976f1d857748d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 2
 --- !u!114 &3884404131658694634
 MonoBehaviour:
   m_ObjectHideFlags: 0

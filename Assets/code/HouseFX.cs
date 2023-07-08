@@ -24,25 +24,25 @@ public class HouseFX : MonoBehaviour
         {
             anim.SetBool("level2", true);
             maxHealth = 20;
-            househealth=maxHealth;
+            
         }
         else if(houselevel == 3)
         {
             anim.SetBool("level3", true);
             maxHealth = 30;
-            househealth=maxHealth;
+            
         }
         else if(houselevel == 4)
         {
             anim.SetBool("level4", true);
             maxHealth = 40;
-            househealth=maxHealth;
+            
         }
         else if(houselevel == 5)
         {
             anim.SetBool("level5", true);
             maxHealth = 50;
-            househealth=maxHealth;
+            
         }
     }
 
