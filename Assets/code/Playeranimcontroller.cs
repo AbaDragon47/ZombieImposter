@@ -17,8 +17,8 @@ public class Playeranimcontroller : MonoBehaviour
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
-        Debug.Log(horizontalInput);
-        Debug.Log(verticalInput);
+        //Debug.Log(horizontalInput);
+        //Debug.Log(verticalInput);
 
         if(horizontalInput != 0 || verticalInput != 0)
         {

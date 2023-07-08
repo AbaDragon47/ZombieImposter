@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     {
         //maybe figure out a way to draw the radius?
         rb= GetComponent<Rigidbody2D>();
-        minAddDist=5f;
+        minAddDist=2.2f;
         zoms= new GameObject[2];
         isActive = true;
         moveSpeed = 5f;
@@ -57,17 +57,38 @@ public class PlayerController : MonoBehaviour
 
     GameObject addZoms(GameObject[] allZoms)
     {
-        GameObject closest= allZoms[0];
+        if(allZoms.Length==0)
+            throw new ArgumentException("no zoms at all");
+        float distance=(transform.position-allZoms[0].transform.position).magnitude;
+        GameObject closest=gameObject;
         foreach (GameObject zombie in allZoms)
         {
-            float distance = Vector2.Distance(transform.position,zombie.transform.position);
-            if(distance< minAddDist){
-                if(distance<Vector2.Distance(transform.position,closest.transform.position)){
+            Debug.Log("yolo");
+            Vector2 origin = transform.position;
+            Vector2 direction = (Vector2)zombie.transform.position - origin;
+
+            distance= direction.magnitude;
+            RaycastHit2D hit = Physics2D.Raycast(origin,direction,distance);
+
+            if(hit.collider != null){
+                Debug.Log("Distance"+distance);
+                float wow= (float)((closest.transform.position-transform.position).magnitude);
+                //Debug.Log(wow);
+                if(distance<minAddDist&& closest==gameObject)
                     closest=zombie;
-                }      
+                else if(distance<minAddDist&&closest!=gameObject){
+                    if(distance<wow)
+                        closest=zombie;
+                }            
             }
+                
         }
+        if(closest==gameObject)
+            throw new ArgumentException("none in viscinity");
         return closest;
+        
+
+
     }
     
 
@@ -80,7 +101,8 @@ public class PlayerController : MonoBehaviour
         {   
             //use Linq vvv
             int index=Array.FindIndex(zoms, i=> i==null);
-            zoms[index]=addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
+            if(index>=0)
+                zoms[index]=addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
         }
         //if tab is pressed you cycle thro all the zoms in array
         //with arrow or a and d keys to become zombie
