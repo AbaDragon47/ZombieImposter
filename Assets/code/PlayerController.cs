@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
     GameObject addZoms(GameObject[] allZoms)
     {
+        //add to players list of zombies
         if(allZoms.Length==0)
             throw new ArgumentException("no zoms at all");
         float distance=(transform.position-allZoms[0].transform.position).magnitude;
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(origin,direction,distance);
 
             if(hit.collider != null){
-                Debug.Log("Distance"+distance);
+               // Debug.Log("Distance"+distance);
                 float wow= (float)((closest.transform.position-transform.position).magnitude);
                 //Debug.Log(wow);
                 if(distance<minAddDist&& closest==gameObject)
@@ -115,6 +116,8 @@ public class PlayerController : MonoBehaviour
             //is active turns off
             if(Input.GetKeyDown(KeyCode.Tab)){
                 GameObject zomzom=Select();
+                Debug.Log(zomzom.name);
+                zomzom.name="Imposter";
                 if(zomzom!=gameObject){
                     zomzom.GetComponent<Zom_movement>().isPlayer=true;
                     susBehavior.Invoke(); 

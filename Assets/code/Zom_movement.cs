@@ -36,30 +36,30 @@ public class Zom_movement : MonoBehaviour
         //PlayerController.sus.AddListener(timeLeft());
     }
 
+    //timer b4 zombie switches back
     IEnumerator timeLeft(float time, float timeLet){
         Debug.Log(Time.time - time);
-        /*if(timeLeft<0)
-            
-        timeLeft=(Time.time-time)-timeLeft;*/
         //after time is up
         yield return new WaitForSeconds(timeLet);
-        //PlayerController.sus.RemoveAllListeners();
         StopCoroutine(timeLeft(time,timeLet));
     }
+
+    //starts ^^^ frame by frame
     void imposter(){
         StartCoroutine(timeLeft(Time.time, 10f));
         if(!isPlayer)
-            target=GameObject.Find("Imposter").transform;
+            target=GameObject.Find("Imposter").transform; //targeting imposter zombie
     }
-    void ranMove(){
+    // i need to fix ranMove so ignore
+    /*void ranMove(){
         if (Random.Range(0f, 1f) < 0.05f)
             GetComponent<Rigidbody2D>().velocity= Vector2.left*moveSpeed;
         else
            GetComponent<Rigidbody2D>().velocity= Vector2.right*moveSpeed;
-    }
+    }*/
     // Update is called once per frame
-    void npcMovement(){
-        
+    void npcMovement()
+    { //to make zom move and stumble 
         if (isPaused)
         {
             // Zombie NPC is currently paused
@@ -94,7 +94,7 @@ public class Zom_movement : MonoBehaviour
 
     }
     void movement()
-    {  
+    {  //player movement
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
         zrb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;   
@@ -103,6 +103,7 @@ public class Zom_movement : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("house")||coll.gameObject.CompareTag("Player"))
         {
+            //checking what zombie hit
             GameObject tar=coll.gameObject;
             Debug.Log("Collision occurred with the desired object.");
             Attack zomAttack= GetComponent<Attack>();
