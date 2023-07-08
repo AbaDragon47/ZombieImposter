@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
+
 public class PlayerController : MonoBehaviour
 {
     bool needsToSwap;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
+        
         susBehavior= new UnityEvent();
 
         needsToSwap=false;
@@ -138,7 +140,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if(isActive){
-        
+            //gameObject.GetComponent<CinemachineVirtualCamera>().enabled=true;
             movement();
             //choosing zoms
             if(Input.GetKey(KeyCode.Z))
@@ -168,6 +170,7 @@ public class PlayerController : MonoBehaviour
                         //human player isnt active
                         isActive = false;
                         zomzom.GetComponent<Zom_movement>().isPlayer=true;
+                       // zomzom.GetComponent<CinemachineVirtualCamera>().enabled=true;
                         susBehavior.Invoke();
                     }
                 //}
@@ -179,6 +182,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         else{
+         //   gameObject.GetComponent<CinemachineVirtualCamera>().enabled=false;
             rb.velocity= new Vector2(0,0); 
             throw new ArgumentException("Human is currently a npc");
         }
