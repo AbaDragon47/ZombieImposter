@@ -34,6 +34,7 @@ public class Zom_movement : MonoBehaviour
     }
     // Update is called once per frame
     void npcMovement(){
+        
         if (isPaused)
         {
             // Zombie NPC is currently paused
@@ -67,6 +68,16 @@ public class Zom_movement : MonoBehaviour
         }
 
     }
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        if (coll.gameObject.CompareTag("house")||coll.gameObject.CompareTag("Player"))
+        {
+            GameObject tar=coll.gameObject;
+            Debug.Log("Collision occurred with the desired object.");
+            Attack zomAttack= GetComponent<Attack>();
+            zomAttack.Hit(tar);
+        }
+    }
     void Update()
     {
         //if not clicked and/or in the players zombie toolkit
@@ -74,7 +85,7 @@ public class Zom_movement : MonoBehaviour
         if(!isPlayer){
             //move toward house gameobject?
             //try to destroy
-            npcMovement();
+            npcMovement(); 
         }
     }
 }
