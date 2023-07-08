@@ -15,6 +15,7 @@ public class movement : MonoBehaviour
         moveSpeed = 5f;
         
     }
+    //maybe include method as to how logic works
 
     // Update is called once per frame
     void Update()
