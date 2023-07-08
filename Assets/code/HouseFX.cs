@@ -6,13 +6,15 @@ public class HouseFX : MonoBehaviour
 {
     private Animator anim;
     public int houselevel;
-    public int househealth;
+    public float househealth;
+    public float maxHealth= 10;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         houselevel = 1;
+        househealth=maxHealth;
     }
 
     // Update is called once per frame
@@ -21,22 +23,26 @@ public class HouseFX : MonoBehaviour
         if(houselevel == 2)
         {
             anim.SetBool("level2", true);
-            househealth = 20;
+            maxHealth = 20;
+            househealth=maxHealth;
         }
         else if(houselevel == 3)
         {
             anim.SetBool("level3", true);
-            househealth = 30;
+            maxHealth = 30;
+            househealth=maxHealth;
         }
         else if(houselevel == 4)
         {
             anim.SetBool("level4", true);
-            househealth = 40;
+            maxHealth = 40;
+            househealth=maxHealth;
         }
         else if(houselevel == 5)
         {
             anim.SetBool("level5", true);
-            househealth = 50;
+            maxHealth = 50;
+            househealth=maxHealth;
         }
     }
 
@@ -47,5 +53,12 @@ public class HouseFX : MonoBehaviour
             houselevel += 1;
         }
         
+    }
+
+    public void TakeDamage(float damageAmt)
+    {
+        househealth -= damageAmt;
+        if(househealth<=0)
+            Destroy(gameObject);
     }
 }
