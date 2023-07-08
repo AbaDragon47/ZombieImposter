@@ -20,31 +20,31 @@ public class Playeranimcontroller : MonoBehaviour
         //Debug.Log(horizontalInput);
         //Debug.Log(verticalInput);
 
-        if(horizontalInput < 0 || verticalInput != 0)
+        if(horizontalInput != 0 || verticalInput != 0)
         {
-           anim.SetBool("isRunning", true);
-           anim.SetBool("isRunningRight", false);
+            if(horizontalInput == -1)
+            {
+                anim.SetBool("isRunning", true);
+                anim.SetBool("isRunningRight", false);
+            
+            }
+            else if(horizontalInput == 1)
+            {
+                anim.SetBool("isRunningRight", true);
+                anim.SetBool("isRunning", false);
+            }
+            
+           
 
          
         }
         else
         {
-            anim.SetBool("isRunning", false);
             anim.SetBool("isRunningRight", false);
-        }
-
-        if(horizontalInput > 0 || verticalInput != 0)
-        {
-           anim.SetBool("isRunning", false);
-           anim.SetBool("isRunningRight", true);
-
-         
-        }
-        else
-        {
             anim.SetBool("isRunning", false);
-            anim.SetBool("isRunningRight", false);
         }
+     
+       
     }
 
    
