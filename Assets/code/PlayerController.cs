@@ -6,6 +6,8 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    bool needsToSwap;
+
     GameObject swap;
     public Rigidbody2D rb;
     public float moveSpeed;
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {   
         susBehavior= new UnityEvent();
 
+        needsToSwap=false;
 
         //maybe figure out a way to draw the radius?
         rb= GetComponent<Rigidbody2D>();
@@ -44,7 +47,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;   
     }
 
-    IEnumerator Select()
+    /*IEnumerator Select()
     {
         while(true)
         {
@@ -52,7 +55,7 @@ public class PlayerController : MonoBehaviour
            
             int rotate = (int)Input.GetAxisRaw("Horizontal");
             int currentObject=0;
-            if(Input.GetKeyDown(KeyCode.Return))
+            if(Input.GetKey(KeyCode.Return))
                 StopCoroutine(Select());
             if(Input.anyKey)
             {
@@ -62,18 +65,32 @@ public class PlayerController : MonoBehaviour
             }  
             
             
-            //human player isnt active
-            isActive = false;
             swap=zoms[currentObject];
-             Debug.Log(swap.name);
-            GameObject zomzom= swap;
-            Debug.Log(zomzom.name);
-            zomzom.name="Imposter";
-            if(zomzom!=gameObject){
-                zomzom.GetComponent<Zom_movement>().isPlayer=true;
-                susBehavior.Invoke(); 
-            }
+            
         }
+    }*/
+    GameObject Select()
+    {
+        if(needsToSwap)
+        {
+            int rotate = (int)Input.GetAxisRaw("Horizontal");
+            int currentObject=0;
+            if(Input.GetKey(KeyCode.Return))
+                needsToSwap=false;
+            if(Input.anyKey)
+            {
+                currentObject+=rotate;
+                currentObject%=zoms.Length;
+                currentObject=currentObject<0?zoms.Length-1:currentObject;
+            }  
+            
+            
+            swap=zoms[currentObject];
+            Debug.Log(swap.name);
+            
+        }
+        return swap;
+       
     }
 
     GameObject addZoms(GameObject[] allZoms)
@@ -120,7 +137,7 @@ public class PlayerController : MonoBehaviour
         
             movement();
             //choosing zoms
-            if(Input.GetKeyDown(KeyCode.Z))
+            if(Input.GetKey(KeyCode.Z))
             {   
                 //use Linq vvv
                 int index=Array.FindIndex(zoms, i=> i==null);
@@ -132,8 +149,25 @@ public class PlayerController : MonoBehaviour
             //is active turns off
             if(Input.GetKey(KeyCode.Tab))
             {
-                if(myRoutine==null)
+               /* if(myRoutine==null)
                     myRoutine= StartCoroutine(Select());
+                else
+                {*/
+                    needsToSwap=true;
+                    //Select();
+                    Debug.Log("ran");
+                    GameObject zomzom= Select(); 
+                    if(zomzom!=gameObject&& !needsToSwap)
+                    {
+                        Debug.Log(zomzom.name);
+                        zomzom.name="Imposter";
+                        //human player isnt active
+                        isActive = false;
+                        zomzom.GetComponent<Zom_movement>().isPlayer=true;
+                        susBehavior.Invoke();
+                    }
+                //}
+                
 
                 
             //whichever player is active cam pans to them
@@ -141,6 +175,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         else{
+            rb.velocity= new Vector2(0,0); 
             throw new ArgumentException("Human is currently a npc");
         }
 

@@ -38,9 +38,9 @@ public class Zom_movement : MonoBehaviour
 
     //timer b4 zombie switches back
     IEnumerator timeLeft(float time, float timeLet){
-        Debug.Log(Time.time - time);
         //after time is up
         yield return new WaitForSeconds(timeLet);
+        Debug.Log("Times up");
         StopCoroutine(timeLeft(time,timeLet));
     }
 

@@ -21,8 +21,8 @@ public class Attack : MonoBehaviour
         {
             healthSystem.TakeDamage(damageAmount);
         }
-        else
-            Debug.Log("no health system lmao");
+        //else
+            //Debug.Log("no health system lmao");
     }
 
     
