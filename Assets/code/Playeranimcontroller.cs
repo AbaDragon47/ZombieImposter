@@ -17,8 +17,12 @@ public class Playeranimcontroller : MonoBehaviour
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
+<<<<<<< Updated upstream
         //Debug.Log(horizontalInput);
         //Debug.Log(verticalInput);
+=======
+     
+>>>>>>> Stashed changes
 
         if(horizontalInput != 0 || verticalInput != 0)
         {
