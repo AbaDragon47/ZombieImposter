@@ -22,13 +22,13 @@ public class Playeranimcontroller : MonoBehaviour
 
         if(horizontalInput != 0 || verticalInput != 0)
         {
-            if(horizontalInput == -1)
+            if(horizontalInput == -1 || verticalInput != 0)
             {
                 anim.SetBool("isRunning", true);
                 anim.SetBool("isRunningRight", false);
             
             }
-            else if(horizontalInput == 1)
+            else if(horizontalInput == 1 || verticalInput != 0)
             {
                 anim.SetBool("isRunningRight", true);
                 anim.SetBool("isRunning", false);
