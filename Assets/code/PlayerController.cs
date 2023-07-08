@@ -139,6 +139,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameObject.Find("Imposter")==false)
+            isActive=true;
         if(isActive){
             //gameObject.GetComponent<CinemachineVirtualCamera>().enabled=true;
             movement();

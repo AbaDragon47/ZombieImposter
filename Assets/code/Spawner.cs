@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            spawnDelay = Random.Range(4f, 5f);
+            spawnDelay = Random.Range(8f, 15f);
             Transform spawnLocation = GetComponent<Transform>();
 
             Instantiate(prefabToSpawn, spawnLocation.position, prefabToSpawn.GetComponent<Transform>().rotation);

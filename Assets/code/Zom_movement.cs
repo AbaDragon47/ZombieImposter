@@ -101,7 +101,7 @@ public class Zom_movement : MonoBehaviour
     }
     void OnCollisionStay2D(Collision2D coll)
     {
-        if (coll.gameObject.CompareTag("house")||coll.gameObject.CompareTag("Player"))
+        if (coll.gameObject.CompareTag("house")||coll.gameObject.CompareTag("Player")||coll.collider.gameObject.name.Equals("Imposter"))
         {
             //checking what zombie hit
             GameObject tar=coll.gameObject;
@@ -112,23 +112,34 @@ public class Zom_movement : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(target.name);
         if(gameObject==null)
             PlayerController.susBehavior.RemoveListener(imposter);
+        
+        if(isPlayer){
+            Debug.Log("zom is supposed to move");
+            target=null;
+            movement();
+            //maybe add animation of pushing?
+        }
 
-        if(target==null)
-            target=GameObject.FindWithTag("house").transform;
+        if(target==null){
+             target=GameObject.FindWithTag("house").transform;
+             if(GameObject.Find("Imposter")!=null)
+                target=GameObject.Find("Imposter").transform;
+                      
+        }
+           
         //if not clicked and/or in the players zombie toolkit
         //they move around
         if(!isPlayer){
+            if(GameObject.Find("Imposter")!=null)
+                target=GameObject.Find("Imposter").transform;
             //move toward house gameobject?
             //try to destroy
             npcMovement();
              
         }
-        else if(isPlayer){
-            Debug.Log("zom is supposed to move");
-            movement();
-            //maybe add animation of pushing?
-        }
+        
     }
 }
