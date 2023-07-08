@@ -77,12 +77,16 @@ public class PlayerController : MonoBehaviour
             int currentObject=0;
             if(Input.GetKey(KeyCode.Return))
                 needsToSwap=false;
-            if(Input.anyKey)
+            if(Input.GetKey(KeyCode.RightArrow)||Input.GetKey(KeyCode.D))
             {
-                currentObject+=rotate;
+                currentObject+=1;
                 currentObject%=zoms.Length;
+            }
+            if(Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.A))
+            {
+                currentObject-=1;
                 currentObject=currentObject<0?zoms.Length-1:currentObject;
-            }  
+            } 
             
             
             swap=zoms[currentObject];
