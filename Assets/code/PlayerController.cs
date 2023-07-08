@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 public class PlayerController : MonoBehaviour
@@ -11,9 +12,16 @@ public class PlayerController : MonoBehaviour
     public GameObject[] zoms;
     public float minAddDist;
 
+    //lemme create an event for imposter
+    public static UnityEvent susBehavior;
+    
+
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        susBehavior= new UnityEvent();
+
+
         //maybe figure out a way to draw the radius?
         rb= GetComponent<Rigidbody2D>();
         minAddDist=2.2f;
@@ -25,12 +33,10 @@ public class PlayerController : MonoBehaviour
     }
     //maybe include method as to how logic works
     void movement()
-    {
-        if(isActive){
-            float horizontalInput = Input.GetAxisRaw("Horizontal");
-            float verticalInput = Input.GetAxisRaw("Vertical");
-            rb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed; 
-        }
+    {  
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+        rb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;   
     }
     GameObject Select()
     {
@@ -49,7 +55,7 @@ public class PlayerController : MonoBehaviour
                 currentObject=currentObject<0?zoms.Length-1:currentObject;
             }
         }
-        //current player isnt active
+        //human player isnt active
         isActive = false;
         return zoms[currentObject];
         
@@ -94,22 +100,34 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement();
-        //choosing zoms
-        if(Input.GetKeyDown(KeyCode.Z))
-        {   
-            //use Linq vvv
-            int index=Array.FindIndex(zoms, i=> i==null);
-            if(index>=0)
-                zoms[index]=addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
+        if(isActive){
+            movement();
+            //choosing zoms
+            if(Input.GetKeyDown(KeyCode.Z))
+            {   
+                //use Linq vvv
+                int index=Array.FindIndex(zoms, i=> i==null);
+                if(index>=0)
+                    zoms[index]=addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
+            }
+            //if tab is pressed you cycle thro all the zoms in array
+            //with arrow or a and d keys to become zombie
+            //is active turns off
+            if(Input.GetKeyDown(KeyCode.Tab)){
+                GameObject zomzom=Select();
+                if(zomzom!=gameObject){
+                    zomzom.GetComponent<Zom_movement>().isPlayer=true;
+                    susBehavior.Invoke(); 
+                }
+                       
+            }
+
+                
+            //whichever player is active cam pans to them
+
         }
-        //if tab is pressed you cycle thro all the zoms in array
-        //with arrow or a and d keys to become zombie
-        //is active turns off
-       // if(Input.GetKeyDown(KeyCode.Tab))
-            //Select().isActive;==> it doesnt like this? idk why?
-        //whichever player is active cam pans to them
-
-
+        else{
+            throw new ArgumentException("Human is currently a npc");
+        }
     }
 }

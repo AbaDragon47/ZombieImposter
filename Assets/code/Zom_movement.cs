@@ -17,14 +17,39 @@ public class Zom_movement : MonoBehaviour
     public Transform target;
     public float moveSpeed = 3.5f;
 
+    //imposter stuff
+    public bool investigate;
+
     void Start()
     {
+        investigate=false;
+
         isPlayer = false;
         target=GameObject.FindWithTag("house").transform;
         zrb= GetComponent<Rigidbody2D>();
         isPaused=false;
         pauseTimer=0f;
         currentPauseDuration=0;
+
+        //Imposter stuff event?
+        PlayerController.susBehavior.AddListener(imposter);
+        //PlayerController.sus.AddListener(timeLeft());
+    }
+
+    IEnumerator timeLeft(float time, float timeLet){
+        Debug.Log(Time.time - time);
+        /*if(timeLeft<0)
+            
+        timeLeft=(Time.time-time)-timeLeft;*/
+        //after time is up
+        yield return new WaitForSeconds(timeLet);
+        //PlayerController.sus.RemoveAllListeners();
+        StopCoroutine(timeLeft(time,timeLet));
+    }
+    void imposter(){
+        StartCoroutine(timeLeft(Time.time, 10f));
+        if(!isPlayer)
+            target=GameObject.Find("Imposter").transform;
     }
     void ranMove(){
         if (Random.Range(0f, 1f) < 0.05f)
@@ -68,6 +93,12 @@ public class Zom_movement : MonoBehaviour
         }
 
     }
+    void movement()
+    {  
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+        zrb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;   
+    }
     void OnCollisionStay2D(Collision2D coll)
     {
         if (coll.gameObject.CompareTag("house")||coll.gameObject.CompareTag("Player"))
@@ -80,12 +111,21 @@ public class Zom_movement : MonoBehaviour
     }
     void Update()
     {
+        if(gameObject==null)
+            PlayerController.susBehavior.RemoveListener(imposter);
+
+        if(target==null)
+            target=GameObject.FindWithTag("house").transform;
         //if not clicked and/or in the players zombie toolkit
         //they move around
         if(!isPlayer){
             //move toward house gameobject?
             //try to destroy
             npcMovement(); 
+        }
+        else if(isPlayer){
+            movement();
+            //maybe add animation of pushing?
         }
     }
 }
