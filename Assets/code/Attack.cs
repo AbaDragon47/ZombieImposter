@@ -5,7 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float damageAmount = .1f;
+    public float damageAmount = 1f;
     void Start()
     {
         
@@ -21,8 +21,8 @@ public class Attack : MonoBehaviour
         {
             healthSystem.TakeDamage(damageAmount);
         }
-        //else
-            //Debug.Log("no health system lmao");
+        else
+            Debug.Log("no health system lmao");
     }
 
     

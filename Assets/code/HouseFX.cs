@@ -55,10 +55,10 @@ public class HouseFX : MonoBehaviour
         
     }
 
-    public void TakeDamage(float damageAmt)
+    /*public void TakeDamage(float damageAmt)
     {
         househealth -= damageAmt;
         if(househealth<=0)
             Destroy(gameObject);
-    }
+    }*/
 }

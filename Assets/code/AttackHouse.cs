@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackHouse : MonoBehaviour
 {
    // Start is called before the first frame update
-    public float damageAmount = .1f;
+    public float damageAmount = 1f;
     void Start()
     {
         
@@ -16,7 +16,7 @@ public class AttackHouse : MonoBehaviour
         //maybe make a chance algo?
         // Check if the target has a HealthSystem script attached
         Debug.Log(target.name);
-        HouseFX healthSystem = target.GetComponent<HouseFX>();
+        Damage healthSystem = target.GetComponent<Damage>();
         if (healthSystem != null&&Random.Range(0f, 1f) < 0.1f) 
         {
             healthSystem.TakeDamage(damageAmount);
