@@ -105,7 +105,7 @@ public class Zom_movement : MonoBehaviour
         {
             //checking what zombie hit
             GameObject tar=coll.gameObject;
-            Debug.Log("Collision occurred with the desired object.");
+            //Debug.Log("Collision occurred with the desired object.");
             Attack zomAttack= GetComponent<Attack>();
             zomAttack.Hit(tar);
         }
@@ -125,6 +125,7 @@ public class Zom_movement : MonoBehaviour
             npcMovement(); 
         }
         else if(isPlayer){
+            Debug.Log("zom is supposed to move");
             movement();
             //maybe add animation of pushing?
         }

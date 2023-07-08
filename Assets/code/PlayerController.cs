@@ -6,11 +6,15 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    GameObject swap;
     public Rigidbody2D rb;
     public float moveSpeed;
     public bool isActive;
     public GameObject[] zoms;
     public float minAddDist;
+
+    //to make sure no infinite loop
+    Coroutine myRoutine;
 
     //lemme create an event for imposter
     public static UnityEvent susBehavior;
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
         isActive = true;
         moveSpeed = 5f;
         zoms[0]= gameObject;
+
         
     }
     //maybe include method as to how logic works
@@ -38,27 +43,37 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;   
     }
-    GameObject Select()
+
+    IEnumerator Select()
     {
-        float rotate = Input.GetAxis("Horizontal");
-        int currentObject=0;
-        while(!Input.GetKeyDown(KeyCode.Return))
+        while(true)
         {
-            if(rotate>0)
+            yield return new WaitForEndOfFrame();
+           
+            int rotate = (int)Input.GetAxisRaw("Horizontal");
+            int currentObject=0;
+            if(Input.GetKeyDown(KeyCode.Return))
+                StopCoroutine(Select());
+            if(Input.anyKey)
             {
-                currentObject+=1;
+                currentObject+=rotate;
                 currentObject%=zoms.Length;
-            }
-            if(rotate<0)
-            {
-                currentObject-=1;
                 currentObject=currentObject<0?zoms.Length-1:currentObject;
+            }  
+            
+            
+            //human player isnt active
+            isActive = false;
+            swap=zoms[currentObject];
+             Debug.Log(swap.name);
+            GameObject zomzom= swap;
+            Debug.Log(zomzom.name);
+            zomzom.name="Imposter";
+            if(zomzom!=gameObject){
+                zomzom.GetComponent<Zom_movement>().isPlayer=true;
+                susBehavior.Invoke(); 
             }
         }
-        //human player isnt active
-        isActive = false;
-        return zoms[currentObject];
-        
     }
 
     GameObject addZoms(GameObject[] allZoms)
@@ -102,6 +117,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if(isActive){
+        
             movement();
             //choosing zoms
             if(Input.GetKeyDown(KeyCode.Z))
@@ -114,23 +130,20 @@ public class PlayerController : MonoBehaviour
             //if tab is pressed you cycle thro all the zoms in array
             //with arrow or a and d keys to become zombie
             //is active turns off
-            if(Input.GetKeyDown(KeyCode.Tab)){
-                GameObject zomzom=Select();
-                Debug.Log(zomzom.name);
-                zomzom.name="Imposter";
-                if(zomzom!=gameObject){
-                    zomzom.GetComponent<Zom_movement>().isPlayer=true;
-                    susBehavior.Invoke(); 
-                }
-                       
-            }
+            if(Input.GetKey(KeyCode.Tab))
+            {
+                if(myRoutine==null)
+                    myRoutine= StartCoroutine(Select());
 
                 
             //whichever player is active cam pans to them
 
+            }
         }
         else{
             throw new ArgumentException("Human is currently a npc");
         }
+
+        
     }
 }
