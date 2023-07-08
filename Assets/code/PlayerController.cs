@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour
         GameObject closest=gameObject;
         foreach (GameObject zombie in allZoms)
         {
-            Debug.Log("yolo");
             Vector2 origin = transform.position;
             Vector2 direction = (Vector2)zombie.transform.position - origin;
 

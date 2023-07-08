@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 63287843}
   m_Layer: 0
   m_Name: house lv1
-  m_TagString: Untagged
+  m_TagString: house
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56522,7 +56522,7 @@ GameObject:
   - component: {fileID: 1226746952}
   m_Layer: 0
   m_Name: house
-  m_TagString: Untagged
+  m_TagString: house
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

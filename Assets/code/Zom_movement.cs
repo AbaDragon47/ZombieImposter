@@ -5,13 +5,62 @@ using UnityEngine;
 public class Zom_movement : MonoBehaviour
 {
     // Start is called before the first frame update
+    //npc stuff
+    public float minPauseDuration = 1f;  
+    public float maxPauseDuration = 3f; 
+    private float currentPauseDuration;  
+    private float pauseTimer; 
+    private bool isPaused;
+
     public bool isPlayer;
+    public Rigidbody2D zrb;
+    public Transform target;
+    public float moveSpeed = 3.5f;
+
     void Start()
     {
         isPlayer = false;
+        target=GameObject.FindWithTag("house").transform;
+        zrb= GetComponent<Rigidbody2D>();
+        isPaused=false;
+        pauseTimer=0f;
+        currentPauseDuration=0;
     }
 
     // Update is called once per frame
+    void npcMovement(){
+        if (isPaused)
+        {
+            // Zombie NPC is currently paused
+            pauseTimer += Time.deltaTime;
+
+            if (pauseTimer >= currentPauseDuration)
+            {
+                // Pause duration is over, resume movement
+                isPaused = false;
+                pauseTimer = 0f;
+                currentPauseDuration = Random.Range(minPauseDuration, maxPauseDuration);
+            }
+        }
+        else
+        {
+            Vector2 direction = (Vector2)target.position- (Vector2)GetComponent<Rigidbody2D>().position;
+            direction.Normalize();
+
+            GetComponent<Rigidbody2D>().velocity = direction * moveSpeed;
+            // Check if the zombie NPC should pause
+            if (Random.Range(0f, 1f) < 0.01f)  // Adjust the probability as needed
+            {
+                isPaused = true;
+                pauseTimer = 0f;
+                currentPauseDuration = Random.Range(minPauseDuration, maxPauseDuration);
+
+                // Stop the zombie NPC's movement
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
+        }
+
+    }
     void Update()
     {
         //if not clicked and/or in the players zombie toolkit
@@ -19,6 +68,7 @@ public class Zom_movement : MonoBehaviour
         if(!isPlayer){
             //move toward house gameobject?
             //try to destroy
+            npcMovement();
         }
     }
 }
