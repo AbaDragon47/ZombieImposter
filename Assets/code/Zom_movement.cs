@@ -26,7 +26,12 @@ public class Zom_movement : MonoBehaviour
         pauseTimer=0f;
         currentPauseDuration=0;
     }
-
+    void ranMove(){
+        if (Random.Range(0f, 1f) < 0.05f)
+            GetComponent<Rigidbody2D>().velocity= Vector2.left*moveSpeed;
+        else
+           GetComponent<Rigidbody2D>().velocity= Vector2.right*moveSpeed;
+    }
     // Update is called once per frame
     void npcMovement(){
         if (isPaused)
@@ -48,6 +53,7 @@ public class Zom_movement : MonoBehaviour
             direction.Normalize();
 
             GetComponent<Rigidbody2D>().velocity = direction * moveSpeed;
+            //ranMove();
             // Check if the zombie NPC should pause
             if (Random.Range(0f, 1f) < 0.01f)  // Adjust the probability as needed
             {
