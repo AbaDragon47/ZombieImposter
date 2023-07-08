@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5835605402036781652}
   - component: {fileID: 6604468004901627943}
   - component: {fileID: 4278019877838319578}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Kevin
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 5649080918375980599}
   - component: {fileID: 8887747479864309378}
   - component: {fileID: 512950419153459204}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: KevinFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4071786247131270580}
   - component: {fileID: 7275402748677686970}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Zombie
   - house
+  - metal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - player
   - Water
   - UI
   - 
