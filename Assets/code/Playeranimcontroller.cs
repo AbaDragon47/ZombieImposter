@@ -5,11 +5,13 @@ using UnityEngine;
 public class Playeranimcontroller : MonoBehaviour
 {
     private Animator anim;
+    public GameObject audiomaker;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        audiomaker.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,6 +24,8 @@ public class Playeranimcontroller : MonoBehaviour
 
         if(horizontalInput != 0 || verticalInput != 0)
         {
+            audiomaker.SetActive(true);
+
             if(horizontalInput == -1 || verticalInput != 0)
             {
                 anim.SetBool("isRunning", true);
@@ -42,6 +46,7 @@ public class Playeranimcontroller : MonoBehaviour
         {
             anim.SetBool("isRunningRight", false);
             anim.SetBool("isRunning", false);
+            audiomaker.SetActive(false);
         }
      
        
