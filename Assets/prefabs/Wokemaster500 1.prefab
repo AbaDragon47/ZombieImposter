@@ -597,12 +597,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3800520ff834f5748962ed671b30c088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPauseDuration: 1
-  maxPauseDuration: 3
+  minPauseDuration: 0.5
+  maxPauseDuration: 1
   isPlayer: 0
   zrb: {fileID: 4054728829310118210}
   target: {fileID: 0}
-  moveSpeed: 3.5
+  moveSpeed: 6
   investigate: 0
 --- !u!114 &2167992644476644889
 MonoBehaviour:

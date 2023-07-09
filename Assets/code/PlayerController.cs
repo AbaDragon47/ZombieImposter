@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         minAddDist=2.2f;
         zoms= new GameObject[2];
         isActive = true;
-        moveSpeed = 5f;
+        moveSpeed = 4f;
         zoms[0]= gameObject;
 
         

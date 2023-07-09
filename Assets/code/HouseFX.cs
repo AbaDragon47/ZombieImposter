@@ -33,30 +33,30 @@ public class HouseFX : MonoBehaviour
         {
             anim.SetBool("level2", true);
             maxHealth = 200;
-            gameObject.GetComponentInParent<Damage>().health+=(maxHealth-gameObject.GetComponentInParent<Damage>().health)/2;
+            gameObject.GetComponent<Damage>().health+=(maxHealth-gameObject.GetComponent<Damage>().health)/2;
             
         }
         else if(houselevel == 3)
         {
             anim.SetBool("level3", true);
             maxHealth = 300;
-            gameObject.GetComponentInParent<Damage>().health+=(maxHealth-gameObject.GetComponentInParent<Damage>().health)/2;
-            gameObject.GetComponentInParent<Damage>().maxHealth=maxHealth;
+            gameObject.GetComponent<Damage>().health+=(maxHealth-gameObject.GetComponent<Damage>().health)/2;
+            gameObject.GetComponent<Damage>().maxHealth=maxHealth;
         }
         else if(houselevel == 4)
         {
             anim.SetBool("level4", true);
             maxHealth = 400;
-            gameObject.GetComponentInParent<Damage>().health+=(maxHealth-gameObject.GetComponentInParent<Damage>().health)/2;
-            gameObject.GetComponentInParent<Damage>().maxHealth=maxHealth;
+            gameObject.GetComponent<Damage>().health+=(maxHealth-gameObject.GetComponent<Damage>().health)/2;
+            gameObject.GetComponent<Damage>().maxHealth=maxHealth;
             
         }
         else if(houselevel == 5)
         {
             anim.SetBool("level5", true);
             maxHealth = 500;
-            gameObject.GetComponentInParent<Damage>().health+=(maxHealth-gameObject.GetComponentInParent<Damage>().health)/2;
-            gameObject.GetComponentInParent<Damage>().maxHealth=maxHealth;
+            gameObject.GetComponent<Damage>().health+=(maxHealth-gameObject.GetComponent<Damage>().health)/2;
+            gameObject.GetComponent<Damage>().maxHealth=maxHealth;
             
         }
         
