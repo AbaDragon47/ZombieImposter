@@ -15,7 +15,7 @@ public class Attack : MonoBehaviour
     {
         //maybe make a chance algo?
         // Check if the target has a HealthSystem script attached
-        Debug.Log(target.name);
+        Debug.Log("attacked "+target.name);
         Damage healthSystem = target.GetComponent<Damage>();
         if (healthSystem != null&&Random.Range(0f, 1f) < 0.1f) 
         {
