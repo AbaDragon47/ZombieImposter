@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 2788338629392028558}
-  burntime: 5
+  burntime: 3
 --- !u!1001 &1831631844603970177
 PrefabInstance:
   m_ObjectHideFlags: 0

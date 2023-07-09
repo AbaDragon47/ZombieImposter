@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     GameObject swap;
     
+
+    [SerializeField] private GameObject floatText;
     public Rigidbody2D rb;
     public float moveSpeed;
     public bool isActive;
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
         //maybe figure out a way to draw the radius?
         rb= GetComponent<Rigidbody2D>();
-        minAddDist=2.2f;
+        minAddDist=3.2f;
         zoms= new GameObject[2];
         isActive = true;
         moveSpeed = 4f;
@@ -47,6 +49,14 @@ public class PlayerController : MonoBehaviour
         
 
         
+    }
+    void show(string text)
+    {
+        if(floatText)
+        {
+            GameObject prefa = Instantiate(floatText,gameObject.transform.position,Quaternion.identity);
+            prefa.GetComponentInChildren<TextMesh>().text=text;
+        }
     }
 
     //maybe include method as to how logic works
@@ -101,6 +111,7 @@ public class PlayerController : MonoBehaviour
             
             swap=zoms[currentObject];
             Debug.Log(swap.name);
+            show(swap.name);
             
         }
         return swap;
@@ -135,8 +146,15 @@ public class PlayerController : MonoBehaviour
             }
                 
         }
-        if(closest==gameObject)
-            throw new ArgumentException("none in viscinity");
+        if(closest==gameObject){
+            show("none");
+        }
+            
+        else{
+            show("+1");
+        }
+        Debug.Log("work");
+            
         return closest;
         
 
@@ -163,6 +181,7 @@ public class PlayerController : MonoBehaviour
                 int index=Array.FindIndex(zoms, i=> i==null);
                 if(index>=0)
                     zoms[index]=addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
+                addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
             }
             //if tab is pressed you cycle thro all the zoms in array
             //with arrow or a and d keys to become zombie
