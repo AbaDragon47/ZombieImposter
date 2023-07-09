@@ -4,34 +4,36 @@ using UnityEngine;
 
 public class shake : MonoBehaviour
 {
-    Vector2 startingPos;
-    public float speed; //how fast it shakes
-    public float amount; //how much it shakes
-    // Start is called before the first frame update
+    public float trembleMagnitude = 0.1f;   // The maximum distance the object will move
+    public float trembleSpeed = 10f;        // The speed of the trembling effect
+    public float trembleDuration = 0.5f;    // The duration of the trembling effect
+
+    private Vector3 initialPosition;        // The initial position of the object
     void Start()
     {
-        speed = 1.0f;
-        amount = 1.0f;
-
-        startingPos.x = transform.position.x;
-        startingPos.y = transform.position.y; 
+        initialPosition = transform.position; 
     }
 
     public IEnumerator shaking(float t)
     {
-        Vector3 lol= new Vector3();;
-        float timer=0f;
-        while(timer<t)
+        float elapsedTime = 0f;
+
+        while (elapsedTime < trembleDuration)
         {
-            Debug.Log("shake");
-            timer+=Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-            lol.x = startingPos.x + (Mathf.Sin(Time.time * speed) * amount );
-            //lol.y = startingPos.y + (Mathf.Sin(Time.time * speed) * amount) ;
-            gameObject.transform.position = lol;
+            // Calculate a random offset based on trembleMagnitude
+            Vector3 offset = new Vector3(Random.Range(-trembleMagnitude, trembleMagnitude),
+                                        Random.Range(-trembleMagnitude, trembleMagnitude),
+                                        0f);
+
+            // Update the object's position
+            transform.position = initialPosition + offset;
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
         }
-        gameObject.GetComponent<Transform>().position=startingPos;
-        StopCoroutine(shaking(t));
-        
+
+    // Reset the object's position to the initial position
+    transform.position = initialPosition;      
     }
 }
