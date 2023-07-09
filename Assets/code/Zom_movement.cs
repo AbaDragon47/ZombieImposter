@@ -37,18 +37,22 @@ public class Zom_movement : MonoBehaviour
     }
 
     //timer b4 zombie switches back
-    IEnumerator timeLeft(float time, float timeLet){
+    IEnumerator timeLeft(float timeLet)
+    {
         //after time is up
         yield return new WaitForSeconds(timeLet);
         Debug.Log("Times up");
-        StopCoroutine(timeLeft(time,timeLet));
+        GameObject.FindWithTag("Player").GetComponent<PlayerController>().isActive=true;
+        Destroy(this.gameObject);
+        StopCoroutine(timeLeft(timeLet));
     }
 
     //starts ^^^ frame by frame
     void imposter(){
-        StartCoroutine(timeLeft(Time.time, 10f));
-        if(!isPlayer)
-            target=GameObject.Find("Imposter").transform; //targeting imposter zombie
+        Debug.Log("heard event");
+        if(isPlayer)
+            StartCoroutine(timeLeft(10f)); 
+        target=GameObject.Find("Imposter").transform; //targeting imposter zombie
     }
     // i need to fix ranMove so ignore
     /*void ranMove(){
@@ -140,8 +144,11 @@ public class Zom_movement : MonoBehaviour
             npcMovement();
              
         }
-        if(gameObject==null)
+        if(gameObject==null){
             PlayerController.susBehavior.RemoveListener(imposter);
+            Destroy(this.gameObject);
+        }
+            
         
     }
 }

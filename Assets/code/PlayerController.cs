@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
                     zomzom.GetComponent<Zom_movement>().isPlayer=true;
                     // zomzom.GetComponent<CinemachineVirtualCamera>().enabled=true;
                     tab=false;
-                    susBehavior.Invoke();
+                    //susBehavior.Invoke();
                 }
                 //}
                 
@@ -192,6 +192,7 @@ public class PlayerController : MonoBehaviour
         else{
          //   gameObject.GetComponent<CinemachineVirtualCamera>().enabled=false;
             rb.velocity= new Vector2(0,0); 
+            susBehavior.Invoke();
             throw new ArgumentException("Human is currently a npc");
         }
 
