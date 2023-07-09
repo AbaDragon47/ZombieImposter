@@ -27,14 +27,15 @@ public class Damage : MonoBehaviour
         }
     }
 
-    //public void TakeDamage(float damageAmt)
-    //{
-        //StartCoroutine(gameObject.GetComponent<shake>().shaking(3f));
-        //health -= damageAmt;
-        //healthbar.SetHealth(health);
-        //if(health<=0)
-            //Destroy(gameObject);
-    //}
+    public void TakeDamage(float damageAmt)
+    {
+        StartCoroutine(gameObject.GetComponent<shake>().shaking(3f));
+        health -= damageAmt;
+        Debug.Log("taking damage");
+        healthbar.SetHealth(health);
+        if(health<=0)
+            Destroy(gameObject);
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {

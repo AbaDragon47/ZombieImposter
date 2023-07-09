@@ -110,7 +110,7 @@ public class Zom_movement : MonoBehaviour
         {
             //checking what zombie hit
             GameObject tar=coll.gameObject;
-            Debug.Log("Collision occurred with the desired object."+tar.transform);
+            //Debug.Log("Collision occurred with the desired object."+tar.transform);
             Attack zomAttack= GetComponent<Attack>();
             zomAttack.Hit(tar);
         }
@@ -127,10 +127,14 @@ public class Zom_movement : MonoBehaviour
         }
 
         if(target==null)
-        {
-             target=GameObject.FindWithTag("house").transform;
-             if(GameObject.Find("Imposter")!=null)
+        {   
+            Debug.Log(Physics2D.Distance(gameObject.GetComponent<Collider2D>(),GameObject.FindWithTag("Player").GetComponent<Collider2D>()).distance);
+            if(GameObject.Find("Imposter")!=null)
                 target=GameObject.Find("Imposter").transform;
+            else if(Physics2D.Distance(gameObject.GetComponent<Collider2D>(),GameObject.FindWithTag("Player").GetComponent<Collider2D>()).distance<15f)
+                 target=GameObject.FindWithTag("Player").transform;
+            else
+                target=GameObject.FindWithTag("house").transform;
                       
         }
            
@@ -140,6 +144,10 @@ public class Zom_movement : MonoBehaviour
         {
             if(GameObject.Find("Imposter")!=null)
                 target=GameObject.Find("Imposter").transform;
+            else if(Physics2D.Distance(gameObject.GetComponent<Collider2D>(),GameObject.FindWithTag("Player").GetComponent<Collider2D>()).distance<7f)
+                 target=GameObject.FindWithTag("Player").transform;
+            else
+                target=GameObject.FindWithTag("house").transform;
             //move toward house gameobject?
             //try to destroy
             npcMovement();
