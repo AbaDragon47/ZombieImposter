@@ -8,6 +8,7 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     bool needsToSwap;
+    bool tab;
 
     GameObject swap;
     public Rigidbody2D rb;
@@ -15,6 +16,9 @@ public class PlayerController : MonoBehaviour
     public bool isActive;
     public GameObject[] zoms;
     public float minAddDist;
+
+    //for swapping mechanic
+    int currentObject=0;
 
     //to make sure no infinite loop
     Coroutine myRoutine;
@@ -28,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {   
         
         susBehavior= new UnityEvent();
-
+        tab=false;
         needsToSwap=false;
 
         //maybe figure out a way to draw the radius?
@@ -76,7 +80,7 @@ public class PlayerController : MonoBehaviour
         if(needsToSwap)
         {
             //int rotate = (int)Input.GetAxisRaw("Horizontal");
-            int currentObject=0;
+            
             if(Input.GetKey(KeyCode.Return))
                 needsToSwap=false;
             if(Input.GetKey(KeyCode.RightArrow)||Input.GetKey(KeyCode.D))
@@ -156,25 +160,27 @@ public class PlayerController : MonoBehaviour
             //with arrow or a and d keys to become zombie
             //is active turns off
             if(Input.GetKey(KeyCode.Tab))
+                tab=true;
+            //Debug.Log(tab);
+            if(tab)
             {
                /* if(myRoutine==null)
                     myRoutine= StartCoroutine(Select());
                 else
                 {*/
-                    needsToSwap=true;
-                    //Select();
-                    Debug.Log("ran");
-                    GameObject zomzom= Select(); 
-                    if(zomzom!=gameObject&& !needsToSwap)
-                    {
-                        Debug.Log(zomzom.name);
-                        zomzom.name="Imposter";
-                        //human player isnt active
-                        isActive = false;
-                        zomzom.GetComponent<Zom_movement>().isPlayer=true;
-                       // zomzom.GetComponent<CinemachineVirtualCamera>().enabled=true;
-                        susBehavior.Invoke();
-                    }
+                needsToSwap=true;
+                GameObject zomzom= Select(); 
+                if(zomzom!=gameObject&& !needsToSwap)
+                {
+                    Debug.Log(zomzom.name);
+                    zomzom.name="Imposter";
+                    //human player isnt active
+                    isActive = false;
+                    zomzom.GetComponent<Zom_movement>().isPlayer=true;
+                    // zomzom.GetComponent<CinemachineVirtualCamera>().enabled=true;
+                    tab=false;
+                    susBehavior.Invoke();
+                }
                 //}
                 
 

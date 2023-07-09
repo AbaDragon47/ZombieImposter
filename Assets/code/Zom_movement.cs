@@ -113,17 +113,16 @@ public class Zom_movement : MonoBehaviour
     void Update()
     {
         //Debug.Log(target.name);
-        if(gameObject==null)
-            PlayerController.susBehavior.RemoveListener(imposter);
-        
-        if(isPlayer){
+        if(isPlayer)
+        {
             Debug.Log("zom is supposed to move");
             target=null;
             movement();
             //maybe add animation of pushing?
         }
 
-        if(target==null){
+        if(target==null)
+        {
              target=GameObject.FindWithTag("house").transform;
              if(GameObject.Find("Imposter")!=null)
                 target=GameObject.Find("Imposter").transform;
@@ -132,7 +131,8 @@ public class Zom_movement : MonoBehaviour
            
         //if not clicked and/or in the players zombie toolkit
         //they move around
-        if(!isPlayer){
+        if(!isPlayer)
+        {
             if(GameObject.Find("Imposter")!=null)
                 target=GameObject.Find("Imposter").transform;
             //move toward house gameobject?
@@ -140,6 +140,8 @@ public class Zom_movement : MonoBehaviour
             npcMovement();
              
         }
+        if(gameObject==null)
+            PlayerController.susBehavior.RemoveListener(imposter);
         
     }
 }
