@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     bool tab;
 
     GameObject swap;
+
+   
     
 
     [SerializeField] private GameObject floatText;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {   
         
+
         susBehavior= new UnityEvent();
         tab=false;
         needsToSwap=false;
@@ -110,9 +113,10 @@ public class PlayerController : MonoBehaviour
             
             
             swap=zoms[currentObject];
+
             Debug.Log(swap.name);
             show(swap.name);
-            
+
         }
         return swap;
        
