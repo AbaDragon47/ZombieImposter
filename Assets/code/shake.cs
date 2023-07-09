@@ -5,8 +5,8 @@ using UnityEngine;
 public class shake : MonoBehaviour
 {
     Vector2 startingPos;
-    float speed; //how fast it shakes
-    float amount; //how much it shakes
+    public float speed; //how fast it shakes
+    public float amount; //how much it shakes
     // Start is called before the first frame update
     void Start()
     {

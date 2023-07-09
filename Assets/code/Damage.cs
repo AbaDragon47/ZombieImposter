@@ -14,7 +14,7 @@ public class Damage : MonoBehaviour
 
     public void TakeDamage(float damageAmt)
     {
-        //StartCoroutine(gameObject.GetComponent<shake>().shaking(3f));
+        StartCoroutine(gameObject.GetComponent<shake>().shaking(3f));
         health -= damageAmt;
         if(health<=0)
             Destroy(gameObject);
