@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     bool tab;
 
     GameObject swap;
+
+   
     
     public Rigidbody2D rb;
     public float moveSpeed;
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {   
         
+
         susBehavior= new UnityEvent();
         tab=false;
         needsToSwap=false;
@@ -100,7 +103,7 @@ public class PlayerController : MonoBehaviour
             
             
             swap=zoms[currentObject];
-            Debug.Log(swap.name);
+            //Debug.Log(swap.name);
             
         }
         return swap;
