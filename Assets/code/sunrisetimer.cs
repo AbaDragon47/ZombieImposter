@@ -2,24 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class sunrisetimer : MonoBehaviour
 {
+    public float currentTime = 0f;
+    public float startingTime = 10f;
+
     public Animator transitionAnim;
     public string sceneName;
 
-    // Start is called before the first frame update
+    [SerializeField] Text countdownText;
+
     void Start()
     {
-        
+        currentTime = startingTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        currentTime -= 1 * Time.deltaTime;
+        countdownText.text = currentTime.ToString("0");
+
+        if(currentTime <= 0)
         {
-            StartCoroutine(LoadScene());
+             StartCoroutine(LoadScene());
         }
     }
 
