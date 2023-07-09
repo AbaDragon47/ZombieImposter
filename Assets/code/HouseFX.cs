@@ -14,36 +14,13 @@ public class HouseFX : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         houselevel = 1;
-        househealth=maxHealth;
+        househealth=gameObject.GetComponentInParent<Damage>().maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(houselevel == 2)
-        {
-            anim.SetBool("level2", true);
-            maxHealth = 20;
-            
-        }
-        else if(houselevel == 3)
-        {
-            anim.SetBool("level3", true);
-            maxHealth = 30;
-            
-        }
-        else if(houselevel == 4)
-        {
-            anim.SetBool("level4", true);
-            maxHealth = 40;
-            
-        }
-        else if(houselevel == 5)
-        {
-            anim.SetBool("level5", true);
-            maxHealth = 50;
-            
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -51,6 +28,36 @@ public class HouseFX : MonoBehaviour
         if(other.tag == "metal")
         {
             houselevel += 1;
+        }
+        if(houselevel == 2)
+        {
+            anim.SetBool("level2", true);
+            maxHealth = 200;
+            gameObject.GetComponentInParent<Damage>().health+=(maxHealth-gameObject.GetComponentInParent<Damage>().health)/2;
+            
+        }
+        else if(houselevel == 3)
+        {
+            anim.SetBool("level3", true);
+            maxHealth = 300;
+            gameObject.GetComponentInParent<Damage>().health+=(maxHealth-gameObject.GetComponentInParent<Damage>().health)/2;
+            gameObject.GetComponentInParent<Damage>().maxHealth=maxHealth;
+        }
+        else if(houselevel == 4)
+        {
+            anim.SetBool("level4", true);
+            maxHealth = 400;
+            gameObject.GetComponentInParent<Damage>().health+=(maxHealth-gameObject.GetComponentInParent<Damage>().health)/2;
+            gameObject.GetComponentInParent<Damage>().maxHealth=maxHealth;
+            
+        }
+        else if(houselevel == 5)
+        {
+            anim.SetBool("level5", true);
+            maxHealth = 500;
+            gameObject.GetComponentInParent<Damage>().health+=(maxHealth-gameObject.GetComponentInParent<Damage>().health)/2;
+            gameObject.GetComponentInParent<Damage>().maxHealth=maxHealth;
+            
         }
         
     }

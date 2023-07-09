@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
          //   gameObject.GetComponent<CinemachineVirtualCamera>().enabled=false;
             rb.velocity= new Vector2(0,0); 
             susBehavior.Invoke();
-            throw new ArgumentException("Human is currently a npc");
+            //throw new ArgumentException("Human is currently a npc");
         }
 
         

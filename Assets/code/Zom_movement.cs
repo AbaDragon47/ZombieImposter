@@ -49,7 +49,7 @@ public class Zom_movement : MonoBehaviour
 
     //starts ^^^ frame by frame
     void imposter(){
-        Debug.Log("heard event");
+        //Debug.Log("heard event");
         if(isPlayer)
             StartCoroutine(timeLeft(10f)); 
         target=GameObject.Find("Imposter").transform; //targeting imposter zombie
@@ -105,11 +105,12 @@ public class Zom_movement : MonoBehaviour
     }
     void OnCollisionStay2D(Collision2D coll)
     {
+        Debug.Log(coll.gameObject.CompareTag("house"));
         if (coll.gameObject.CompareTag("house")||coll.gameObject.CompareTag("Player")||coll.collider.gameObject.name.Equals("Imposter"))
         {
             //checking what zombie hit
             GameObject tar=coll.gameObject;
-            Debug.Log("Collision occurred with the desired object.");
+            Debug.Log("Collision occurred with the desired object."+tar.transform);
             Attack zomAttack= GetComponent<Attack>();
             zomAttack.Hit(tar);
         }
@@ -119,7 +120,7 @@ public class Zom_movement : MonoBehaviour
         //Debug.Log(target.name);
         if(isPlayer)
         {
-            Debug.Log("zom is supposed to move");
+            //Debug.Log("zom is supposed to move");
             target=null;
             movement();
             //maybe add animation of pushing?
