@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     bool tab;
 
     GameObject swap;
+    
     public Rigidbody2D rb;
     public float moveSpeed;
     public bool isActive;
@@ -44,7 +45,10 @@ public class PlayerController : MonoBehaviour
         zoms[0]= gameObject;
 
         
+
+        
     }
+
     //maybe include method as to how logic works
     void movement()
     {  
@@ -143,6 +147,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+      
+
+
         if(GameObject.Find("Imposter")==false)
             isActive=true;
         if(isActive){
