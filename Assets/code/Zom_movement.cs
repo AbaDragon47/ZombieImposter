@@ -105,7 +105,7 @@ public class Zom_movement : MonoBehaviour
     }
     void OnCollisionStay2D(Collision2D coll)
     {
-        Debug.Log(coll.gameObject.CompareTag("house"));
+        //Debug.Log(coll.gameObject.CompareTag("house"));
         if (coll.gameObject.CompareTag("house")||coll.gameObject.CompareTag("Player")||coll.collider.gameObject.name.Equals("Imposter"))
         {
             //checking what zombie hit

@@ -602,7 +602,7 @@ MonoBehaviour:
   isPlayer: 0
   zrb: {fileID: 4054728829310118210}
   target: {fileID: 0}
-  moveSpeed: 6
+  moveSpeed: 6.35
   investigate: 0
 --- !u!114 &2167992644476644889
 MonoBehaviour:
