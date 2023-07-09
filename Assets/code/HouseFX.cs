@@ -8,6 +8,8 @@ public class HouseFX : MonoBehaviour
     public float houselevel;
     public float househealth;
     public float maxHealth= 100;
+    public GameObject metaleffect;
+    public GameObject woodeffect;
 
     
     string[] levels;
@@ -21,6 +23,7 @@ public class HouseFX : MonoBehaviour
         anim = GetComponent<Animator>();
         houselevel = 1f;
         househealth=gameObject.GetComponentInParent<Damage>().maxHealth;
+        
     }
 
     // Update is called once per frame
@@ -34,11 +37,16 @@ public class HouseFX : MonoBehaviour
         if(other.tag == "metal")
         {
             houselevel += .5f;
+            Instantiate(metaleffect, transform.position, Quaternion.identity);
+            
             Set();
+            //Instantiate(metaleffect);
         }
+       
         if(other.tag=="wood")
         {
             houselevel += .25f;
+            Instantiate(woodeffect, transform.position, Quaternion.identity);
             Set();
         }
         

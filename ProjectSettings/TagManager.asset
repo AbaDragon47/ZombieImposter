@@ -8,6 +8,7 @@ TagManager:
   - house
   - metal
   - fire
+  - wood
   layers:
   - Default
   - TransparentFX
