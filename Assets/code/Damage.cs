@@ -33,8 +33,7 @@ public class Damage : MonoBehaviour
         health -= damageAmt;
         Debug.Log("taking damage");
         healthbar.SetHealth(health);
-        if(health<=0)
-            Destroy(gameObject);
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)

@@ -7,7 +7,7 @@ public class HouseFX : MonoBehaviour
     private Animator anim;
     public int houselevel;
     public float househealth;
-    public float maxHealth= 10;
+    public float maxHealth= 100;
 
     // Start is called before the first frame update
     void Start()
