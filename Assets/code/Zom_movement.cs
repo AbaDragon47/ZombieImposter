@@ -51,7 +51,7 @@ public class Zom_movement : MonoBehaviour
     void imposter(){
         //Debug.Log("heard event");
         if(isPlayer)
-            StartCoroutine(timeLeft(10f)); 
+            StartCoroutine(timeLeft(20f)); 
         target=GameObject.Find("Imposter").transform; //targeting imposter zombie
     }
     // i need to fix ranMove so ignore

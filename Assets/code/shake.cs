@@ -14,7 +14,7 @@ public class shake : MonoBehaviour
         initialPosition = transform.position; 
     }
 
-    public IEnumerator shaking(float t)
+    public IEnumerator shaking()
     {
         float elapsedTime = 0f;
 
