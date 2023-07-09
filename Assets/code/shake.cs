@@ -27,7 +27,7 @@ public class shake : MonoBehaviour
             timer+=Time.deltaTime;
             yield return new WaitForEndOfFrame();
             lol.x = startingPos.x + (Mathf.Sin(Time.time * speed) * amount );
-            lol.y = startingPos.y + (Mathf.Sin(Time.time * speed) * amount) ;
+            //lol.y = startingPos.y + (Mathf.Sin(Time.time * speed) * amount) ;
             gameObject.transform.position = lol;
         }
         gameObject.GetComponent<Transform>().position=startingPos;
