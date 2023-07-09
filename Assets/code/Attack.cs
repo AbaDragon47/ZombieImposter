@@ -19,7 +19,7 @@ public class Attack : MonoBehaviour
         Damage healthSystem = target.GetComponent<Damage>();
         if (healthSystem != null&&Random.Range(0f, 1f) < 0.1f) 
         {
-            healthSystem.TakeDamage(damageAmount);
+            //healthSystem.TakeDamage(damageAmount);
         }
         else
             Debug.Log("no health system lmao");

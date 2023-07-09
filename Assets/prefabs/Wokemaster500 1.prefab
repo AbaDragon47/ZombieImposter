@@ -437,9 +437,7 @@ GameObject:
   - component: {fileID: 6025465964350534396}
   - component: {fileID: 4054728829310118210}
   - component: {fileID: 4829773752288317194}
-  - component: {fileID: 2167992644476644889}
   - component: {fileID: 3884404131658694634}
-  - component: {fileID: 3298319798147304013}
   - component: {fileID: 5928513880559325278}
   m_Layer: 0
   m_Name: Wokemaster500 1
@@ -604,19 +602,6 @@ MonoBehaviour:
   target: {fileID: 0}
   moveSpeed: 6.35
   investigate: 0
---- !u!114 &2167992644476644889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9080329123100523254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 613728195a1605b4289976f1d857748d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 2
 --- !u!114 &3884404131658694634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,26 +609,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9080329123100523254}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9babcba6df924e7428f12758a985c73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 5
---- !u!114 &3298319798147304013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9080329123100523254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78aa37dd03b53f84ab9753dd62e7d6e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 100
 --- !u!114 &5928513880559325278
 MonoBehaviour:
   m_ObjectHideFlags: 0

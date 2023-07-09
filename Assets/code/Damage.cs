@@ -1,22 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Damage : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Animator transitionAnim;
+    public string sceneName;
+    public healthbar healthbar;
+    public float pain;
+   
     public float health,maxHealth=100f;
 
     void Start()
     {
         health=maxHealth;
+        healthbar.SetMaxHealth(maxHealth);
     }
 
-    public void TakeDamage(float damageAmt)
+    // Update is called once per frame
+    void Update()
     {
-        StartCoroutine(gameObject.GetComponent<shake>().shaking(3f));
-        health -= damageAmt;
-        if(health<=0)
-            Destroy(gameObject);
+        if(health < 0)
+        {
+            StartCoroutine(LoadScene());
+        }
+    }
+
+    //public void TakeDamage(float damageAmt)
+    //{
+        //StartCoroutine(gameObject.GetComponent<shake>().shaking(3f));
+        //health -= damageAmt;
+        //healthbar.SetHealth(health);
+        //if(health<=0)
+            //Destroy(gameObject);
+    //}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Zombie")
+        {
+            health -= pain;
+            healthbar.SetHealth(health);
+        }
+    }
+
+    IEnumerator LoadScene()
+    {
+        transitionAnim.SetTrigger("end");
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(sceneName);
     }
 }
