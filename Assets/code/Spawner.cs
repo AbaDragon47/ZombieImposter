@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnDelay=5f;
+        //spawnDelay=5f;
         StartCoroutine(SpawnPrefabs());
     }
     //can acts between frames without stopping other oncurring code
@@ -27,9 +27,9 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                spawnDelay = Random.Range(6f,8f);
-
-                Instantiate(prefabToSpawn,new Vector3(gameObject.transform.position.x+Random.Range(-3f,4f),gameObject.transform.position.y+Random.Range(-3f,4f),0),prefabToSpawn.GetComponent<Transform>().rotation);
+                spawnDelay = Random.Range(7f,8f);
+                
+                Instantiate(prefabToSpawn,new Vector3(gameObject.transform.position.x+Random.Range(-6f,5f),gameObject.transform.position.y+Random.Range(-10f,9f),0),prefabToSpawn.GetComponent<Transform>().rotation);
             }
             yield return new WaitForSeconds(spawnDelay);
             
