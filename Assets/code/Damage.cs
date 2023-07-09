@@ -21,7 +21,7 @@ public class Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health < 0)
+        if(health <=0)
         {
             StartCoroutine(LoadScene());
         }
@@ -29,7 +29,7 @@ public class Damage : MonoBehaviour
 
     public void TakeDamage(float damageAmt)
     {
-        StartCoroutine(gameObject.GetComponent<shake>().shaking(3f));
+        StartCoroutine(gameObject.GetComponent<shake>().shaking(10f));
         health -= damageAmt;
         Debug.Log("taking damage");
         healthbar.SetHealth(health);
