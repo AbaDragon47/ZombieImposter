@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
     {
         if(needsToSwap)
         {
-            int rotate = (int)Input.GetAxisRaw("Horizontal");
+            //int rotate = (int)Input.GetAxisRaw("Horizontal");
             int currentObject=0;
             if(Input.GetKey(KeyCode.Return))
                 needsToSwap=false;

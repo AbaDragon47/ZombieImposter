@@ -112,7 +112,7 @@ public class Zom_movement : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(target.name);
+        //Debug.Log(target.name);
         if(gameObject==null)
             PlayerController.susBehavior.RemoveListener(imposter);
         
