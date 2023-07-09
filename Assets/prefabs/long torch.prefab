@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 7694652955941421419}
   m_Layer: 0
   m_Name: long torch
-  m_TagString: Untagged
+  m_TagString: fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
