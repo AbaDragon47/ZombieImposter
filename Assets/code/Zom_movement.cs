@@ -128,7 +128,7 @@ public class Zom_movement : MonoBehaviour
 
         if(target==null)
         {   
-            Debug.Log(Physics2D.Distance(gameObject.GetComponent<Collider2D>(),GameObject.FindWithTag("Player").GetComponent<Collider2D>()).distance);
+            
             if(GameObject.Find("Imposter")!=null)
                 target=GameObject.Find("Imposter").transform;
             else if(Physics2D.Distance(gameObject.GetComponent<Collider2D>(),GameObject.FindWithTag("Player").GetComponent<Collider2D>()).distance<15f)

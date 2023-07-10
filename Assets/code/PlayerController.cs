@@ -103,18 +103,19 @@ public class PlayerController : MonoBehaviour
             if(Input.GetKey(KeyCode.RightArrow)||Input.GetKey(KeyCode.D))
             {
                 currentObject+=1;
-                currentObject%=zoms.Length;
+                currentObject=currentObject>zoms.Length-1?0:currentObject;
             }
             if(Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.A))
             {
                 currentObject-=1;
                 currentObject=currentObject<0?zoms.Length-1:currentObject;
             } 
+            Debug.Log(currentObject);
             
             
             swap=zoms[currentObject];
 
-            Debug.Log(swap.name);
+           // Debug.Log(swap.name);
             show(swap.name);
 
         }
@@ -184,8 +185,20 @@ public class PlayerController : MonoBehaviour
                 //use Linq vvv
                 int index=Array.FindIndex(zoms, i=> i==null);
                 if(index>=0)
-                    zoms[index]=addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
-                addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
+                {
+                    GameObject x=addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
+                    Debug.Log(x.name);
+                    if(x!=gameObject)
+                        zoms[index]=x;
+                }
+                    
+                else
+                {
+                    GameObject x=addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
+                    Debug.Log("nope"+x.name);
+                    //addZoms(GameObject.FindGameObjectsWithTag("Zombie"));
+                }
+                
             }
             //if tab is pressed you cycle thro all the zoms in array
             //with arrow or a and d keys to become zombie

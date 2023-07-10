@@ -31,7 +31,6 @@ public class Damage : MonoBehaviour
     {
         //StartCoroutine(gameObject.GetComponent<shake>().shaking());
         health -= damageAmt/10;
-        Debug.Log("taking damage");
         healthbar.SetHealth(health);
         
     }

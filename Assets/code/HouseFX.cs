@@ -49,6 +49,10 @@ public class HouseFX : MonoBehaviour
             Instantiate(woodeffect, transform.position, Quaternion.identity);
             Set();
         }
+        if(other.tag=="Zombie")
+        {
+            StartCoroutine(GetComponentInParent<shake>().shaking());
+        }
         
     }
     public void Set()
